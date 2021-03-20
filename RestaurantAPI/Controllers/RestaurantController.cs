@@ -26,7 +26,7 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Update([FromBody] UpdateRestaurantDto dto, [FromRoute]int id)
+        public ActionResult Update([FromBody] UpdateRestaurantDto dto, [FromRoute] int id)
         {
             _restaurantService.Update(id, dto);
 
@@ -43,7 +43,7 @@ namespace RestaurantAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
-        public ActionResult CreateRestaurant([FromBody]CreateRestaurantDto dto)
+        public ActionResult CreateRestaurant([FromBody] CreateRestaurantDto dto)
         {
             var userId = int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
             var id = _restaurantService.Create(dto);
@@ -52,7 +52,7 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<RestaurantDto>> GetAll([FromQuery]RestaurantQuery query)
+        public ActionResult<IEnumerable<RestaurantDto>> GetAll([FromQuery] RestaurantQuery query)
         {
             var restaurantsDtos = _restaurantService.GetAll(query);
 
