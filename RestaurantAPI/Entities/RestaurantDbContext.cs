@@ -15,6 +15,11 @@ namespace RestaurantAPI.Entities
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
 
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
+        {
+            
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -46,10 +51,6 @@ namespace RestaurantAPI.Entities
                 .HasMaxLength(50);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_connectionString);
-        }
 
     }
 }

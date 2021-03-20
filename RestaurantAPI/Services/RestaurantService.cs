@@ -118,7 +118,7 @@ namespace RestaurantAPI.Services
                                                            || r.Desctiprion.ToLower()
                                                                .Contains(query.SearchPhrase.ToLower())));
 
-            if (string.IsNullOrEmpty(query.SortBy))
+            if (!string.IsNullOrEmpty(query.SortBy))
             {
 
                 var columnsSelector = new Dictionary<string, Expression<Func<Restaurant, object>>>
